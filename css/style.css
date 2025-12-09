@@ -1,0 +1,249 @@
+/* Existing styles... */
+:root {
+    --primary: #FF6B6B;
+    --primary-dark: #EE5253;
+    --secondary: #4ECDC4;
+    --background: #F7F9FC;
+    --surface: #FFFFFF;
+    --text: #2D3436;
+    --text-light: #636E72;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Prevent body scroll during animations */
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    /* Tablet landscape mostly */
+    margin: 0 auto;
+    background-color: var(--surface);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--radius);
+}
+
+@media (max-width: 768px) {
+    #app {
+        border-radius: 0;
+        height: 100vh;
+    }
+}
+
+/* Common Utilities */
+.hidden {
+    display: none !important;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: white;
+}
+
+/* POP UI STYLES */
+.btn-pop-submit {
+    background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+    color: white;
+    border: none;
+    padding: 20px 60px;
+    font-size: 1.5em;
+    font-weight: 900;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.btn-pop-submit:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+}
+
+.btn-pop-submit:active {
+    transform: translateY(2px);
+}
+
+.rating-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.rating-star {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #dfe6e9;
+    transition: all 0.2s;
+}
+
+.rating-star i {
+    font-size: 5em;
+    /* Bigger for single focus */
+    margin-bottom: 10px;
+}
+
+.rating-star span {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+/* When radio is checked, color it and previous ones */
+input[type="radio"]:checked+label {
+    color: #fdcb6e;
+    animation: bounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Yes/No Buttons */
+.pop-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 30px 60px;
+    /* Bigger */
+    border-radius: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #b2bec3;
+    background: #f1f2f6;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 3px solid transparent;
+}
+
+.yes-btn:hover {
+    background: #e0f7fa;
+    color: #00cec9;
+}
+
+.no-btn:hover {
+    background: #ffeaa7;
+    color: #fdcb6e;
+}
+
+input:checked+.yes-btn {
+    background: #00cec9;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 206, 201, 0.3);
+    transform: scale(1.05);
+}
+
+input:checked+.no-btn {
+    background: #fdcb6e;
+    color: white;
+    box-shadow: 0 5px 15px rgba(253, 203, 110, 0.3);
+    transform: scale(1.05);
+}
+
+/* Checkboxes */
+.checkbox-pop {
+    cursor: pointer;
+}
+
+.checkbox-pop span {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #f1f2f6;
+    border-radius: 40px;
+    font-weight: bold;
+    color: #636e72;
+    font-size: 1.2em;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.checkbox-pop input:checked+span {
+    background: #a29bfe;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(162, 155, 254, 0.4);
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
